@@ -17,7 +17,7 @@ The account user is an entity with :
 * phone Number
 * Gender
   
- This project use :
+This project use :
  
  * Spring Boot
  * Spring Data
@@ -27,11 +27,11 @@ The account user is an entity with :
  * H2 embeded database
  * maven
   
-   
-  
-  
-  == Prerequis 
+== Prerequis 
   - JDK11 
   - Maven 3
   - IDE (Intelij or Eclipse with lombok plugin)
   
+== Installation / Lancement
+
+
