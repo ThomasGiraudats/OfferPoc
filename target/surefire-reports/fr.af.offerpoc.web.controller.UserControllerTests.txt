@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+Test set: fr.af.offerpoc.web.controller.UserControllerTests
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 2, Errors: 1, Skipped: 0, Time elapsed: 7.457 s <<< FAILURE! - in fr.af.offerpoc.web.controller.UserControllerTests
+should_update_user(fr.af.offerpoc.web.controller.UserControllerTests)  Time elapsed: 0.136 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at fr.af.offerpoc.web.controller.UserControllerTests.should_update_user(UserControllerTests.java:93)
+
+should_create_user(fr.af.offerpoc.web.controller.UserControllerTests)  Time elapsed: 0.303 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'fr.af.offerpoc.validator.country.OfferCountryValidator': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'fr.af.offerpoc.service.OfferCountryService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at fr.af.offerpoc.web.controller.UserControllerTests.should_create_user(UserControllerTests.java:75)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'fr.af.offerpoc.validator.country.OfferCountryValidator': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'fr.af.offerpoc.service.OfferCountryService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at fr.af.offerpoc.web.controller.UserControllerTests.should_create_user(UserControllerTests.java:75)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'fr.af.offerpoc.service.OfferCountryService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at fr.af.offerpoc.web.controller.UserControllerTests.should_create_user(UserControllerTests.java:75)
+
+should_get_user_by_id(fr.af.offerpoc.web.controller.UserControllerTests)  Time elapsed: 0.144 s  <<< FAILURE!
+java.lang.AssertionError: No value at JSON path "$.id"
+	at fr.af.offerpoc.web.controller.UserControllerTests.should_get_user_by_id(UserControllerTests.java:65)
+Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['id']
+	at fr.af.offerpoc.web.controller.UserControllerTests.should_get_user_by_id(UserControllerTests.java:65)
+
