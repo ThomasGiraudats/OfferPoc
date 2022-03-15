@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "33daf0fa-c814-4b5b-9174-25b34a1c86b6",
+		"name": "Offer POC Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GetUser By Name",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create Swissman User (error)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userBirthdate\": \"2000\",\r\n  \"userCountry\": \"CH\",\r\n  \"userGender\": \"M\",\r\n  \"userName\": \"Test1\",\r\n  \"userPhoneNumber\": \"050544000\"\r\n}"
+				},
+				"url": "http://localhost:8080/api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Young user (error)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userBirthdate\": \"20100101\",\r\n  \"userCountry\": \"FR\",\r\n  \"userGender\": \"M\",\r\n  \"userName\": \"Test1\",\r\n  \"userPhoneNumber\": \"050544000\"\r\n}"
+				},
+				"url": "http://localhost:8080/api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Create User with wrong gender",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userBirthdate\": \"20000101\",\r\n  \"userCountry\": \"FR\",\r\n  \"userGender\": \"T\",\r\n  \"userName\": \"Test1\",\r\n  \"userPhoneNumber\": \"050544000\"\r\n}"
+				},
+				"url": "http://localhost:8080/api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Create User Test1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userBirthdate\": \"20000101\",\r\n  \"userCountry\": \"FR\",\r\n  \"userGender\": \"M\",\r\n  \"userName\": \"Test1\",\r\n  \"userPhoneNumber\": \"050544000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "GetUser By Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users/getUserByName?name=Test1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"getUserByName"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Test1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
