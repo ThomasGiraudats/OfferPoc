@@ -1,0 +1,58 @@
+= Offer POC 
+
+* <<Introduction>> +
+* <<Prerequis>> +
+* <<Installation / Lancement>> +
+* <<Administration>> +
+* <<Tests >> +
+
+== Introduction
+It's POC project demostrating the feasibility to implement quikly a service for save and read an account user.
+
+The account user is an entity with : 
+
+* User Name,
+* Birthdate,
+* Country,
+* phone Number
+* Gender
+  
+This project use :
+ 
+ * Spring Boot
+ * Spring Data
+ * Validator
+ * Lombock
+ * Swagger
+ * H2 embeded database
+ * maven
+  
+== Prerequis 
+  - JDK11 
+  - Maven 3
+  - IDE (Intelij or Eclipse with lombok plugin)
+  
+== Installation / Lancement
+
+You can run the Spring boot application with maven (JAVA-HOME in jdk 11) :
+int the root project with console : mvn spring-boot:run
+
+Otherwise, you can import the project in an IDE and run the SpringBootRestApiApplication (src/main/java/fr/af/offerpoc) with right click and run.
+
+The database is in memory and recreat at every run. 
+
+
+== Administration 
+H2 data base ;
+
+http://localhost:8080/h2-console/login.jsp?jsessionid=f5a3e1fbbfbb395625f2f3023b4876cb
+
+* driver class : org.h2.Driver
+* JDBC URL : jdbc:h2:mem:testdb
+* User ; sa
+
+SWAGGER : 
+http://localhost:8080/swagger-ui.html#/offer-user-controller
+
+== Tests
+
