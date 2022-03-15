@@ -44,7 +44,9 @@ The database is in memory and recreat at every run.
 
 == Administration 
 H2 data base ;
+
 http://localhost:8080/h2-console/login.jsp?jsessionid=f5a3e1fbbfbb395625f2f3023b4876cb
+
 * driver class : org.h2.Driver
 * JDBC URL : jdbc:h2:mem:testdb
 * User ; sa
