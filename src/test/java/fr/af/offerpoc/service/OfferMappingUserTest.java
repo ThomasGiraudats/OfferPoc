@@ -6,7 +6,6 @@ import fr.af.offerpoc.entity.OfferMappingUser;
 import fr.af.offerpoc.entity.OfferUser;
 import fr.af.offerpoc.form.OfferFormUser;
 import fr.af.offerpoc.utils.TestHelper;
-import org.hibernate.internal.log.ConnectionAccessLogger_$logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,14 +16,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
-import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

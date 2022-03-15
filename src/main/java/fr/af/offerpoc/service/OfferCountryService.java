@@ -1,9 +1,7 @@
 package fr.af.offerpoc.service;
 
 import fr.af.offerpoc.entity.OfferCountry;
-import fr.af.offerpoc.entity.OfferUser;
 import fr.af.offerpoc.repo.OfferCountryRepository;
-import fr.af.offerpoc.repo.OfferUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

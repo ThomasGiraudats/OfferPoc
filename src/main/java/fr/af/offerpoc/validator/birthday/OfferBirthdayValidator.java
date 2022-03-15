@@ -1,12 +1,10 @@
 package fr.af.offerpoc.validator.birthday;
 
-import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;

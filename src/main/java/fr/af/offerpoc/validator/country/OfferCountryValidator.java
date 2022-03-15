@@ -2,19 +2,12 @@ package fr.af.offerpoc.validator.country;
 
 import fr.af.offerpoc.entity.OfferCountry;
 import fr.af.offerpoc.service.OfferCountryService;
-import fr.af.offerpoc.service.OfferUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
-import static java.util.Calendar.*;
 
 /**
  * Business rule :

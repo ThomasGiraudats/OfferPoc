@@ -7,22 +7,11 @@ import fr.af.offerpoc.form.OfferFormUser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Random;
 import java.util.UUID;
 import java.util.Date;
-import static java.lang.String.format;
 
 public class TestHelper {
-    public static OfferFormUser buildUser() {
-        String uuid = UUID.randomUUID().toString();
-        return OfferFormUser.builder()
-                .userName("name-"+uuid)
-                .build();
-    }
-
     public static OfferFormUser buildFormUser() {
-        Random random = new Random();
-
         String uuid = UUID.randomUUID().toString();
         return OfferFormUser.builder()
                 .userName("name-"+uuid)
@@ -35,7 +24,6 @@ public class TestHelper {
 
     public static OfferUser buildUserDTO()  {
 
-        Random random = new Random();
         OfferCountry offerCountry = OfferCountry.builder()
                 .countryId(new Long(10))
                 .countryCode("FR")
