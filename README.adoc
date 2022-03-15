@@ -11,21 +11,21 @@ It's POC project demostrating the feasibility to implement quikly a service for 
 
 The account user is an entity with : 
 
-*User Name,
-*Birthdate,
-*Country,
-*phone Number
-*Gender
+* User Name,
+* Birthdate,
+* Country,
+* phone Number
+* Gender
   
  This project use :
  
- *Spring Boot
- *Spring Data
- *Validator
- *Lombock
- *Swagger
- *H2 embeded database
- *maven
+ * Spring Boot
+ * Spring Data
+ * Validator
+ * Lombock
+ * Swagger
+ * H2 embeded database
+ * maven
   
    
   
