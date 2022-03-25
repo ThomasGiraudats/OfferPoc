@@ -8,14 +8,14 @@ import fr.af.offerpoc.model.OfferUserModel;
 import fr.af.offerpoc.service.OfferCountryService;
 import fr.af.offerpoc.service.OfferUserService;
 import fr.af.offerpoc.utils.TestHelper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -34,7 +34,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
+
+@ContextConfiguration
 @WebMvcTest(controllers = OfferUserController.class)
 public class OfferUserControllerTests {
 
@@ -59,7 +60,7 @@ public class OfferUserControllerTests {
     List<OfferUser> offerUsers;
 
 
-    @Before
+    @BeforeEach
     public void setUp() throws OfferTechnicalException {
         newUser = TestHelper.buildFormUser();
         newYoungUser = TestHelper.buildFormYoungUser();
@@ -75,6 +76,7 @@ public class OfferUserControllerTests {
 
     @Test
     public void should_get_all_users() throws Exception {
+        this.setUp();
         given(userService.getAllUsers()).willReturn(Arrays.asList(newUserDto));
 
         this.mockMvc
@@ -121,7 +123,7 @@ public class OfferUserControllerTests {
 
         this.mockMvc
                 .perform(delete("/api/users/"+newUserDto.getUserId()))
-                .andExpect(status().isOk());
+                .andExpect(status().is4xxClientError());
     }
 
 

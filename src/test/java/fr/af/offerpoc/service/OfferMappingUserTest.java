@@ -5,20 +5,18 @@ import fr.af.offerpoc.entity.OfferUser;
 import fr.af.offerpoc.mapper.UserMapper;
 import fr.af.offerpoc.model.OfferUserModel;
 import fr.af.offerpoc.utils.TestHelper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 @ContextConfiguration
 public class OfferMappingUserTest {
@@ -36,7 +34,7 @@ public class OfferMappingUserTest {
 
 
 
-    @Before
+    @BeforeEach
     public void setUp()  {
         userMapper=  Mappers.getMapper(UserMapper.class);
         newUser = TestHelper.buildFormUser();
@@ -49,7 +47,7 @@ public class OfferMappingUserTest {
     }
 
     @Test
-    public void mappingUserDTO()  {
+    public void mappingUserDTOTest()  {
         given(countryService.getCountryByCode("FR")).willReturn(frCountry);
 
         OfferUserModel userForm = userMapper.getModelFromEntity(newUserDto);
@@ -59,7 +57,7 @@ public class OfferMappingUserTest {
 
 
     @Test
-    public void mappingUserForm()  {
+    public void mappingUserFormTest()  {
         OfferUser userDto = userMapper.getEntityFromModel(newUser);
         assertThat(userDto.getUserName()).isEqualTo(newUser.getUserName());
         assertThat(userDto.getCountry().getCountryCode()).isEqualTo(newUser.getUserCountry());

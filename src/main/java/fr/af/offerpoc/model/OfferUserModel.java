@@ -35,7 +35,7 @@ public class OfferUserModel {
 
     @Schema(description = "User Phone.",
             example = "", required = false)
-    private String userPhone;
+    private String userPhoneNumber;
 
     @Schema(description = "Country of user.",
             example = "", required = true)

@@ -71,7 +71,7 @@ public class OfferUser {
     @Schema(description = "Phone Number.",
             example = "", required = true)
     @Column(name = "user_phone")
-    private String userPhone;
+    private String userPhoneNumber;
 
     @Schema(description = "Phone Number.",
             example = "", required = true)

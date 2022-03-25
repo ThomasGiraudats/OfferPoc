@@ -40,7 +40,7 @@ public class TestHelper {
         LocalDate dateBirthdDate = LocalDate.of(2010, 01, 01);
         String uuid = UUID.randomUUID().toString();
         return OfferUser.builder()
-                .userId(new Long(1))
+                .userId(new Long(10))
                 .userName("name-" + uuid)
                 .userGender(OfferGenderEnum.M)
                 .userBirthdate(dateBirthdDate)
