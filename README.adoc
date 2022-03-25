@@ -28,13 +28,13 @@ This project use :
  * maven
   
 == Prerequis 
-  - JDK11 
+  - JDK1.8
   - Maven 3
   - IDE (Intelij or Eclipse with lombok plugin)
   
 == Installation / Lancement
 
-You can run the Spring boot application with maven (JAVA-HOME in jdk 11) :
+You can run the Spring boot application with maven (JAVA-HOME in jdk 1.8) :
 int the root project with console : mvn spring-boot:run
 
 Otherwise, you can import the project in an IDE and run the SpringBootRestApiApplication (src/main/java/fr/af/offerpoc) with right click and run.
@@ -55,4 +55,18 @@ SWAGGER :
 http://localhost:8080/swagger-ui.html#/offer-user-controller
 
 == Tests
+
+In first, verify if the service is up via an explorer and this Url :
+http://localhost:8080/api/users
+If you have a Json response,the server is up.
+
+Then, you can iport the postman file configuration 
+Offer POC Tests.postman_collection.json
+
+Or directly acces to the usescases :
+https://go.postman.co/workspace/My-Workspace~a103f574-8097-4851-83e2-68f22b0d5701/collection/1449990-33daf0fa-c814-4b5b-9174-25b34a1c86b6?action=share&creator=1449990
+
+
+
+
 
