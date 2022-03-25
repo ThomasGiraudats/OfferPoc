@@ -5,7 +5,7 @@ create table offer_user (
                             user_name varchar(255) not null,
                             user_country_id bigint,
                             user_gender bigint,
-                            user_phone bigint,
+                            user_phone varchar(255),
                             user_birthdate timestamp,
                             user_created_at timestamp,
                             user_updated_at timestamp,

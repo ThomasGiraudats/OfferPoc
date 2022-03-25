@@ -1,18 +1,19 @@
 package fr.af.offerpoc.validator.birthday;
 
+import fr.af.offerpoc.commun.OfferUtil;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
-import static java.util.Calendar.*;
 
 /**
  * Implement Business Rules : It's impossible to save User with an age less than 18 (Adult)
+ *
+ * @Author TGI
+ * @Date 24/03/2022
  */
 public class OfferBirthdayValidator implements ConstraintValidator<OfferBirthdayConstrainte, String> {
 
@@ -21,43 +22,38 @@ public class OfferBirthdayValidator implements ConstraintValidator<OfferBirthday
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
+    /**
+     * birthdate validation :
+     * BR  -> age over 18 years
+     * @param birthdate String date at format : yyyyMMdd
+     * @param constraintValidatorContext
+     * @return boolean true if it's valid
+     */
     @Override
     public boolean isValid(String birthdate, ConstraintValidatorContext constraintValidatorContext) {
-
-
-        Date date1= null;
+        LocalDate date1 = null;
         if (birthdate == null) {
             constraintValidatorContext.disableDefaultConstraintViolation();
             constraintValidatorContext.buildConstraintViolationWithTemplate("The birthdate must not be null").addConstraintViolation();
             return false;
-        }else {
+        } else {
+
             try {
-                date1 = new SimpleDateFormat("yyyyMMdd").parse(birthdate);
-            } catch (ParseException e) {
+                date1 = OfferUtil.parseDate(birthdate);
+            } catch (DateTimeParseException e) {
                 constraintValidatorContext.disableDefaultConstraintViolation();
                 constraintValidatorContext.buildConstraintViolationWithTemplate("The date of birth format must be YYYYMMDD").addConstraintViolation();
                 return false;
             }
-            Calendar a = getCalendar(date1);
-            Calendar b = getCalendar(new Date());
-            int diff = b.get(YEAR) - a.get(YEAR);
-            if (a.get(MONTH) > b.get(MONTH) ||
-                    (a.get(MONTH) == b.get(MONTH) && a.get(DATE) > b.get(DATE))) {
-                diff--;
-            }
-            if (diff <18) {
+            LocalDate today = LocalDate.now();
+            long duration = ChronoUnit.YEARS.between(date1, today);
+
+            if (duration < 18) {
                 constraintValidatorContext.disableDefaultConstraintViolation();
                 constraintValidatorContext.buildConstraintViolationWithTemplate("Creation of young people is impossible (age < 18 years)").addConstraintViolation();
                 return false;
             }
         }
         return true;
-    }
-
-
-    public static Calendar getCalendar(Date date) {
-        Calendar cal = Calendar.getInstance(Locale.FRANCE);
-        cal.setTime(date);
-        return cal;
     }
 }

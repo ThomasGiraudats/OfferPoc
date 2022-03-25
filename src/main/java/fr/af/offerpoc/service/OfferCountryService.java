@@ -6,9 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
+/**
+ * DAO for country
+ *
+ * @Author TGI
+ * @Date 24/03/2022
+ */
 @Service
 @Transactional
 public class OfferCountryService {
@@ -19,11 +24,22 @@ public class OfferCountryService {
         this.countryRepository = countryRepository;
     }
 
+    /**
+     * Search country by id
+     * @param id
+     * @return OfferCountry can be null
+     */
     public Optional<OfferCountry> getCountryById(Long id) {
         return countryRepository.findById(id);
     }
 
-    public List<OfferCountry> getCountryByCode(String code) {
+    /**
+     * Search country by code
+     *
+     * @param code
+     * @return OfferCountry can be null
+     */
+    public OfferCountry getCountryByCode(String code) {
         return countryRepository.findByCountryCode(code);
     }
 

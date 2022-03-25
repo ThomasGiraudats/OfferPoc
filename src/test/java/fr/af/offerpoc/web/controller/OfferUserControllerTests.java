@@ -3,12 +3,11 @@ package fr.af.offerpoc.web.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.af.offerpoc.commun.exception.OfferTechnicalException;
 import fr.af.offerpoc.entity.OfferCountry;
-import fr.af.offerpoc.entity.OfferMappingUser;
-import fr.af.offerpoc.form.OfferFormUser;
-import fr.af.offerpoc.service.OfferCountryService;
-import fr.af.offerpoc.utils.TestHelper;
 import fr.af.offerpoc.entity.OfferUser;
+import fr.af.offerpoc.model.OfferUserModel;
+import fr.af.offerpoc.service.OfferCountryService;
 import fr.af.offerpoc.service.OfferUserService;
+import fr.af.offerpoc.utils.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,10 +23,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,8 +38,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = OfferUserController.class)
 public class OfferUserControllerTests {
 
-    @MockBean
-    OfferMappingUser mappingUser;
 
     @MockBean
     OfferUserService userService;
@@ -49,25 +50,26 @@ public class OfferUserControllerTests {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
-    OfferFormUser  newUser;
+    OfferUserModel newUser;
+    OfferUserModel newYoungUser;
+
 
     OfferUser newUserDto;
-    List<OfferCountry> offerCountryList;
+    OfferCountry frCountry;
     List<OfferUser> offerUsers;
 
 
     @Before
     public void setUp() throws OfferTechnicalException {
         newUser = TestHelper.buildFormUser();
+        newYoungUser = TestHelper.buildFormYoungUser();
         newUserDto = TestHelper.buildUserDTO();
         offerUsers = new ArrayList<OfferUser>();
         offerUsers.add(newUserDto);
-        offerCountryList = new ArrayList<OfferCountry>();
-        OfferCountry offerCountry = OfferCountry.builder()
+        frCountry= OfferCountry.builder()
                             .countryId(new Long(10))
                 .countryCode("FR")
                 .countryLabel("France").build();
-        offerCountryList.add(offerCountry);
 
     }
 
@@ -93,13 +95,24 @@ public class OfferUserControllerTests {
 
     @Test
     public void should_create_user() throws Exception {
-        given(countryService.getCountryByCode("FR")).willReturn(offerCountryList);
+        given(countryService.getCountryByCode("FR")).willReturn(frCountry);
         this.mockMvc
                 .perform(post("/api/users/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(newUser))
                 )
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void create_young_user() throws Exception {
+        given(countryService.getCountryByCode("FR")).willReturn(frCountry);
+        this.mockMvc
+                .perform(post("/api/users/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(newYoungUser))
+                )
+                .andExpect(status().is4xxClientError());
     }
 
     @Test

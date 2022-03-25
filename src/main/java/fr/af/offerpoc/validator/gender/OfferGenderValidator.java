@@ -7,6 +7,9 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * If the Gender is not null, it must be M or F
+ *
+ * @Author TGI
+ * @Date 24/03/2022
  */
 public class OfferGenderValidator implements ConstraintValidator<OfferGenderConstrainte, String> {
 
@@ -16,10 +19,16 @@ public class OfferGenderValidator implements ConstraintValidator<OfferGenderCons
     }
 
     @Override
+    /**
+     * Valid the country of user :
+     * @param gender string value code of OfferGenderEnum
+     * @param constraintValidatorContext
+     * @return boolean true if the gender is null or managed in OfferGenderEnum
+     */
     public boolean isValid(String gender, ConstraintValidatorContext constraintValidatorContext) {
         if (gender == null) {
             return true;
-        }else {
+        } else {
             if (OfferGenderEnum.getGenderByCode(gender) == null) {
                 constraintValidatorContext.disableDefaultConstraintViolation();
                 constraintValidatorContext.buildConstraintViolationWithTemplate("The Gender Must be F (Female) or M (Male)").addConstraintViolation();

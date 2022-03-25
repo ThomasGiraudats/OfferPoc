@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.List;
 
 
 /**
  * Business rule :
  * Only French resident are Allow to create an account
+ * @Author TGI
+ * @Date 24/03/2022
  */
 public class OfferCountryValidator implements ConstraintValidator<OfferCountryConstrainte, String> {
     private final OfferCountryService countryService;
@@ -26,32 +27,34 @@ public class OfferCountryValidator implements ConstraintValidator<OfferCountryCo
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
+    /**
+     * Valid the country of user :
+     * BR -> Must have a contry value
+     * BR2 -> Only French user
+     *
+     * @param country
+     * @param constraintValidatorContext
+     * @return boolean true if it's valid
+     */
     @Override
     public boolean isValid(String country, ConstraintValidatorContext constraintValidatorContext) {
-        if (country == null){
+        if (country == null) {
             constraintValidatorContext.disableDefaultConstraintViolation();
             constraintValidatorContext.buildConstraintViolationWithTemplate("The country must not be null").addConstraintViolation();
             return false;
-        }else {
-            List<OfferCountry> listCountry =  countryService.getCountryByCode(country);
-            if (listCountry != null && listCountry.size() > 0) {
-                if (listCountry.get(0).getCountryCode().equals("FR")) {
-                    return true;
-                }else {
-                    constraintValidatorContext.disableDefaultConstraintViolation();
-                    constraintValidatorContext.buildConstraintViolationWithTemplate("The country code : "+country+ " is not autorised to creat an account.").addConstraintViolation();
-                    return false;
-                }
-
-            }else {
+        } else {
+            OfferCountry countryEntity = countryService.getCountryByCode(country);
+            if (countryEntity != null && countryEntity.getCountryCode().equals("FR")) {
+                return true;
+            } else {
                 constraintValidatorContext.disableDefaultConstraintViolation();
-                constraintValidatorContext.buildConstraintViolationWithTemplate("The country code : " + country + " is unknown.").addConstraintViolation();
+                constraintValidatorContext.buildConstraintViolationWithTemplate("The country code : " + country + " is not autorised to creat an account.").addConstraintViolation();
                 return false;
             }
-        }
 
     }
 
+}
 
 
 }
